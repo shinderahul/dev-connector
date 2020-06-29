@@ -7,10 +7,10 @@ const Posts = require('../../models/Posts');
 const Profile = require('../../models/Profile');
 const User = require('../../models/User');
 
-// @route   api/posts
-// @desc    Test route
-// @access  Public
-router.get('/', [auth, [
+// @route   POST api/posts
+// @desc    Create a Post
+// @access  Private
+router.post('/', [auth, [
     check('text', 'Text is required').not().isEmpty()
 ] ], async (req, res) => {
     const errors = validationResult(req);
