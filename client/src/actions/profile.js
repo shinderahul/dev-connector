@@ -14,7 +14,7 @@ import {
 // Get current users profile
 export const getCurrentProfile = () => async (dispatch) => {
 	try {
-		const res = await axios.get('api/profile/me');
+		const res = await axios.get('/api/profile/me');
 
 		dispatch({
 			type: GET_PROFILE,
@@ -33,7 +33,7 @@ export const getProfiles = () => async (dispatch) => {
 	dispatch({ type: CLEAR_PROFILE });
 
 	try {
-		const res = await axios.get('api/profile');
+		const res = await axios.get('/api/profile');
 
 		dispatch({
 			type: GET_PROFILES,
@@ -66,7 +66,7 @@ export const getProfileById = (userId) => async (dispatch) => {
 // Get Githhub repos
 export const getGithubRepos = (username) => async (dispatch) => {
 	try {
-		const res = await axios.get(`api/profile/github/${username}`);
+		const res = await axios.get(`/api/profile/github/${username}`);
 
 		dispatch({
 			type: GET_REPOS,
@@ -86,6 +86,7 @@ export const createProfile = (formData, history, edit = false) => async (
 	dispatch
 ) => {
 	try {
+		console.log(formData);
 		const config = {
 			headers: {
 				'Content-Type': 'application/json',
@@ -93,7 +94,7 @@ export const createProfile = (formData, history, edit = false) => async (
 		};
 
 		const res = await axios.post('/api/profile', formData, config);
-
+		console.log(res);
 		dispatch({
 			type: GET_PROFILE,
 			payload: res.data,
@@ -187,7 +188,7 @@ export const addEducation = (formData, history) => async (dispatch) => {
 // Delete Experience
 export const deleteExperience = (id) => async (dispatch) => {
 	try {
-		const res = await axios.delete(`api/profile/experience/${id}`);
+		const res = await axios.delete(`/api/profile/experience/${id}`);
 
 		dispatch({
 			type: UPDATE_PROFILE,
@@ -206,7 +207,7 @@ export const deleteExperience = (id) => async (dispatch) => {
 // Delete Education
 export const deleteEducation = (id) => async (dispatch) => {
 	try {
-		const res = await axios.delete(`api/profile/education/${id}`);
+		const res = await axios.delete(`/api/profile/education/${id}`);
 
 		dispatch({
 			type: UPDATE_PROFILE,
