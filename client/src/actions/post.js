@@ -6,6 +6,7 @@ import {
 	UPDATE_LIKES,
 	DELETE_POST,
 	ADD_POST,
+	GET_POST,
 } from './types';
 
 // Get posts
@@ -26,12 +27,12 @@ export const getPosts = () => async (dispatch) => {
 };
 
 // Get post
-export const getPost = () => async (dispatch) => {
+export const getPost = (id) => async (dispatch) => {
 	try {
-		const res = await axios.get('/api/posts');
+		const res = await axios.get(`/api/posts/${id}`);
 
 		dispatch({
-			type: GET_POSTS,
+			type: GET_POST,
 			payload: res.data,
 		});
 	} catch (err) {
